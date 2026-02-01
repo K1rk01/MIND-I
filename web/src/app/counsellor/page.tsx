@@ -15,7 +15,7 @@ export default function CounsellorDashboard() {
   useEffect(() => {
     const fetchAlerts = async () => {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/counsellors/alerts', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/counsellors/alerts`, {
         headers: { Authorization: token },
       });
       const data = await res.json();
@@ -26,7 +26,7 @@ export default function CounsellorDashboard() {
 
   const updateAlert = async (id: string, status: string, notes: string) => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5000/api/counsellors/alert/${id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/counsellors/alert/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: token },
       body: JSON.stringify({ status, notes }),
